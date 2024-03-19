@@ -10,6 +10,14 @@
 #define REBOOT_PULSE_MINIMUM 200
 #define REBOOT_PULSE_MAXIMUM 600
 
+char *seconds_to_datetime(time_t seconds) {
+    static char buffer[20]; // 用于存储结果的静态字符数组，确保在函数调用结束后依然可以访问
+
+    struct tm *timeinfo = localtime(&seconds); // 将秒数转换为本地时间结构体
+    strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", timeinfo); // 格式化时间字符串
+    return buffer; // 返回结果
+}
+
 int main() {
     struct gpiod_chip *chip;
     struct gpiod_line *shutdown_line, *boot_line;
@@ -17,7 +25,7 @@ int main() {
     long pulse_duration;
 
     // Open GPIO chip
-    chip = gpiod_chip_open("gpiochip0");
+    chip = gpiod_chip_open("/dev/gpiochip0");
     if (!chip) {
         perror("Open GPIO chip failed");
         return EXIT_FAILURE;
@@ -80,9 +88,10 @@ int main() {
                 clock_gettime(CLOCK_MONOTONIC, &current_time);
                 pulse_duration = (current_time.tv_sec - pulse_start.tv_sec) * 1000 +
                                       (current_time.tv_nsec - pulse_start.tv_nsec) / 1000000;
+                printf("pulse_duration is %ld\n", pulse_duration);
 
                 if (pulse_duration > REBOOT_PULSE_MAXIMUM) {
-                    printf("Your device is shutting down, halting Rpi...\n");
+                    printf("%s: Your device is shutting down, halting Rpi...\n", seconds_to_datetime(time(NULL)));
                     system("sudo poweroff");
                     break;
                 }
@@ -95,7 +104,7 @@ int main() {
             }
 
             if (pulse_duration > REBOOT_PULSE_MINIMUM && pulse_duration <= REBOOT_PULSE_MAXIMUM) {
-                printf("Your device is rebooting, recycling Rpi...\n");
+                printf("%s: Your device is rebooting, recycling Rpi...\n", seconds_to_datetime(time(NULL)));
                 system("sudo reboot");
                 break;
             }
@@ -112,8 +121,8 @@ int main() {
 
 
 // How to compile this file;
-// gcc xgpio-pwr.c -o xgpio_pwr -lgpiod
-// xgpio-pwr gpiochip0 4 17
+// gcc xgpio_pwr.c -o xgpio_pwr -lgpiod
+// xgpio_pwr gpiochip0 4 17
 
 //  view gpio map
 // cat /sys/kernel/debug/gpio
