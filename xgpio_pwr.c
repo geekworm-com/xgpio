@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <time.h>
 
 #define SHUTDOWN_LINE 4
 #define BOOT_LINE 17
@@ -112,7 +113,7 @@ int main() {
 
 
 // How to compile this file;
-// gcc xgpio-pwr.c -o xgpio-pwr -lgpiod
+// gcc xgpio-pwr.c -o xgpio_pwr -lgpiod
 // xgpio-pwr gpiochip0 4 17
 
 //  view gpio map
