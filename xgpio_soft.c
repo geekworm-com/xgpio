@@ -5,6 +5,14 @@
 #include <errno.h>
 #include <gpiod.h>
 
+/* ---------------------------------------
+1. How to compile this program
+   gcc xgpio_soft.c -o xgpio_soft -lgpiod
+
+ 2. How to use this program
+   xgpio_soft gpiochip0 27   
+--*/
+
 #ifndef	CONSUMER
 #define	CONSUMER	"XGPIO-SOFT"
 #endif
@@ -17,8 +25,7 @@ int main(int argc, char *argv[]) {
 
     // 检查命令行参数数量
     if (argc < 3 || argc > 4) {
-        fprintf(stderr, "Usage: %s <gpio-chip-path> <gpio-line-offset> [<delay-seconds>]\n", argv[0]);
-        fprintf(stderr, "\tgpio-chip-path can generally be passed gpiochip0 \n");
+        fprintf(stderr, "Usage: %s <gpio-chip-path> <gpio-line-offset> [<delay-seconds>]\n", argv[0]);        
         return EXIT_FAILURE;
     }
 

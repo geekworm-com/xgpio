@@ -1,0 +1,360 @@
+==Ubuntu 23.04==
+geekworm@geekworm-desktop:~$ uname -a
+Linux geekworm-desktop 6.2.0-1018-raspi #20-Ubuntu SMP PREEMPT Tue Nov 21 13:32:12 UTC 2023 aarch64 aarch64 aarch64 GNU/Linux
+
+geekworm@geekworm-desktop:~$ sudo gpioinfo
+[sudo] password for geekworm: 
+gpiochip0 - 58 lines:
+	line   0:     "ID_SDA"       unused   input  active-high 
+	line   1:     "ID_SCL"       unused   input  active-high 
+	line   2:       "SDA1"       unused   input  active-high 
+	line   3:       "SCL1"       unused   input  active-high 
+	line   4:  "GPIO_GCLK"  "XGPIO-PWR"   input  active-high [used]
+	line   5:      "GPIO5"       unused   input  active-high 
+	line   6:      "GPIO6"       unused   input  active-high 
+	line   7:  "SPI_CE1_N"   "spi0 CS1"  output   active-low [used]
+	line   8:  "SPI_CE0_N"   "spi0 CS0"  output   active-low [used]
+	line   9:   "SPI_MISO"       unused   input  active-high 
+	line  10:   "SPI_MOSI"       unused   input  active-high 
+	line  11:   "SPI_SCLK"       unused   input  active-high 
+	line  12:     "GPIO12"       unused   input  active-high 
+	line  13:     "GPIO13"       unused   input  active-high 
+	line  14:       "TXD1"       unused   input  active-high 
+	line  15:       "RXD1"       unused   input  active-high 
+	line  16:     "GPIO16"       unused   input  active-high 
+	line  17:     "GPIO17"  "XGPIO-PWR"  output  active-high [used]
+	line  18:     "GPIO18"       unused   input  active-high 
+	line  19:     "GPIO19"       unused   input  active-high 
+	line  20:     "GPIO20"       unused   input  active-high 
+	line  21:     "GPIO21"       unused   input  active-high 
+	line  22:     "GPIO22"       unused   input  active-high 
+	line  23:     "GPIO23"       unused   input  active-high 
+	line  24:     "GPIO24"       unused   input  active-high 
+	line  25:     "GPIO25"       unused   input  active-high 
+	line  26:     "GPIO26"       unused   input  active-high 
+	line  27:     "GPIO27"       unused   input  active-high 
+	line  28: "RGMII_MDIO"       unused   input  active-high 
+	line  29:  "RGMIO_MDC"       unused   input  active-high 
+	line  30:       "CTS0"       unused   input  active-high 
+	line  31:       "RTS0"       unused   input  active-high 
+	line  32:       "TXD0"       unused   input  active-high 
+	line  33:       "RXD0"       unused   input  active-high 
+	line  34:    "SD1_CLK"       unused   input  active-high 
+	line  35:    "SD1_CMD"       unused   input  active-high 
+	line  36:  "SD1_DATA0"       unused   input  active-high 
+	line  37:  "SD1_DATA1"       unused   input  active-high 
+	line  38:  "SD1_DATA2"       unused   input  active-high 
+	line  39:  "SD1_DATA3"       unused   input  active-high 
+	line  40:  "PWM0_MISO"       unused   input  active-high 
+	line  41:  "PWM1_MOSI"       unused   input  active-high 
+	line  42: "STATUS_LED_G_CLK" "ACT" output active-high [used]
+	line  43: "SPIFLASH_CE_N" unused input active-high 
+	line  44:       "SDA0"       unused   input  active-high 
+	line  45:       "SCL0"       unused   input  active-high 
+	line  46: "RGMII_RXCLK" unused input active-high 
+	line  47: "RGMII_RXCTL" unused input active-high 
+	line  48: "RGMII_RXD0"       unused   input  active-high 
+	line  49: "RGMII_RXD1"       unused   input  active-high 
+	line  50: "RGMII_RXD2"       unused   input  active-high 
+	line  51: "RGMII_RXD3"       unused   input  active-high 
+	line  52: "RGMII_TXCLK" unused input active-high 
+	line  53: "RGMII_TXCTL" unused input active-high 
+	line  54: "RGMII_TXD0"       unused   input  active-high 
+	line  55: "RGMII_TXD1"       unused   input  active-high 
+	line  56: "RGMII_TXD2"       unused   input  active-high 
+	line  57: "RGMII_TXD3"       unused   input  active-high 
+gpiochip1 - 8 lines:
+	line   0:      "BT_ON"       unused  output  active-high 
+	line   1:      "WL_ON"       unused  output  active-high 
+	line   2: "PWR_LED_OFF" "PWR" output active-low [used]
+	line   3: "GLOBAL_RESET" unused output active-high 
+	line   4: "VDD_SD_IO_SEL" "vdd-sd-io" output active-high [used]
+	line   5:   "CAM_GPIO" "cam1_regulator" output active-high [used]
+	line   6:  "SD_PWR_ON" "regulator-sd-vcc" output active-high [used]
+	line   7:    "SD_OC_N"       unused   input  active-high 
+
+geekworm@geekworm-desktop:~$ sudo cat /sys/kernel/debug/gpio
+gpiochip0: GPIOs 0-57, parent: platform/fe200000.gpio, pinctrl-bcm2711:
+ gpio-0   (ID_SDA              )
+ gpio-1   (ID_SCL              )
+ gpio-2   (SDA1                )
+ gpio-3   (SCL1                )
+ gpio-4   (GPIO_GCLK           |XGPIO-PWR           ) in  lo 
+ gpio-5   (GPIO5               )
+ gpio-6   (GPIO6               )
+ gpio-7   (SPI_CE1_N           |spi0 CS1            ) out hi ACTIVE LOW
+ gpio-8   (SPI_CE0_N           |spi0 CS0            ) out hi ACTIVE LOW
+ gpio-9   (SPI_MISO            )
+ gpio-10  (SPI_MOSI            )
+ gpio-11  (SPI_SCLK            )
+ gpio-12  (GPIO12              )
+ gpio-13  (GPIO13              )
+ gpio-14  (TXD1                )
+ gpio-15  (RXD1                )
+ gpio-16  (GPIO16              )
+ gpio-17  (GPIO17              |XGPIO-PWR           ) out hi 
+ gpio-18  (GPIO18              )
+ gpio-19  (GPIO19              )
+ gpio-20  (GPIO20              )
+ gpio-21  (GPIO21              )
+ gpio-22  (GPIO22              )
+ gpio-23  (GPIO23              )
+ gpio-24  (GPIO24              )
+ gpio-25  (GPIO25              )
+ gpio-26  (GPIO26              )
+ gpio-27  (GPIO27              )
+ gpio-28  (RGMII_MDIO          )
+ gpio-29  (RGMIO_MDC           )
+ gpio-30  (CTS0                )
+ gpio-31  (RTS0                )
+ gpio-32  (TXD0                )
+ gpio-33  (RXD0                )
+ gpio-34  (SD1_CLK             )
+ gpio-35  (SD1_CMD             )
+ gpio-36  (SD1_DATA0           )
+ gpio-37  (SD1_DATA1           )
+ gpio-38  (SD1_DATA2           )
+ gpio-39  (SD1_DATA3           )
+ gpio-40  (PWM0_MISO           )
+ gpio-41  (PWM1_MOSI           )
+ gpio-42  (STATUS_LED_G_CLK    |ACT                 ) out lo 
+ gpio-43  (SPIFLASH_CE_N       )
+ gpio-44  (SDA0                )
+ gpio-45  (SCL0                )
+ gpio-46  (RGMII_RXCLK         )
+ gpio-47  (RGMII_RXCTL         )
+ gpio-48  (RGMII_RXD0          )
+ gpio-49  (RGMII_RXD1          )
+ gpio-50  (RGMII_RXD2          )
+ gpio-51  (RGMII_RXD3          )
+ gpio-52  (RGMII_TXCLK         )
+ gpio-53  (RGMII_TXCTL         )
+ gpio-54  (RGMII_TXD0          )
+ gpio-55  (RGMII_TXD1          )
+ gpio-56  (RGMII_TXD2          )
+ gpio-57  (RGMII_TXD3          )
+
+gpiochip1: GPIOs 512-519, parent: platform/soc:firmware:gpio, raspberrypi-exp-gpio, can sleep:
+ gpio-512 (BT_ON               )
+ gpio-513 (WL_ON               )
+ gpio-514 (PWR_LED_OFF         |PWR                 ) out lo ACTIVE LOW
+ gpio-515 (GLOBAL_RESET        )
+ gpio-516 (VDD_SD_IO_SEL       |vdd-sd-io           ) out hi 
+ gpio-517 (CAM_GPIO            |cam1_regulator      ) out lo 
+ gpio-518 (SD_PWR_ON           |regulator-sd-vcc    ) out hi 
+ gpio-519 (SD_OC_N             )
+
+pi@raspberrypi:/usr/local/bin $ ldd xgpio_pwr 
+	/usr/lib/arm-linux-gnueabihf/libarmmem-${PLATFORM}.so => /usr/lib/arm-linux-gnueabihf/libarmmem-v8l.so (0xf7f60000)
+	libgpiod.so.2 => /lib/arm-linux-gnueabihf/libgpiod.so.2 (0xf7f20000)
+	libc.so.6 => /lib/arm-linux-gnueabihf/libc.so.6 (0xf7da7000)
+	/lib/ld-linux-armhf.so.3 (0xf7f7d000)
+
+==Raspberrypi OS BOOKWORM==
+pi@raspberrypi:~ $ uname -a
+Linux raspberrypi 6.6.20+rpt-rpi-v8 #1 SMP PREEMPT Debian 1:6.6.20-1+rpt1 (2024-03-07) aarch64 GNU/Linux
+
+pi@raspberrypi:~ $ sudo gpioinfo
+gpiochip0 - 58 lines:
+	line   0:     "ID_SDA"       unused   input  active-high 
+	line   1:     "ID_SCL"       unused   input  active-high 
+	line   2:      "GPIO2"       unused   input  active-high 
+	line   3:      "GPIO3"       unused   input  active-high 
+	line   4:      "GPIO4"  "XGPIO-PWR"   input  active-high [used]
+	line   5:      "GPIO5"       unused   input  active-high 
+	line   6:      "GPIO6"       unused   input  active-high 
+	line   7:      "GPIO7"       unused   input  active-high 
+	line   8:      "GPIO8"       unused   input  active-high 
+	line   9:      "GPIO9"       unused   input  active-high 
+	line  10:     "GPIO10"       unused   input  active-high 
+	line  11:     "GPIO11"       unused   input  active-high 
+	line  12:     "GPIO12"       unused   input  active-high 
+	line  13:     "GPIO13"       unused   input  active-high 
+	line  14:     "GPIO14"       unused   input  active-high 
+	line  15:     "GPIO15"       unused   input  active-high 
+	line  16:     "GPIO16"       unused   input  active-high 
+	line  17:     "GPIO17"  "XGPIO-PWR"  output  active-high [used]
+	line  18:     "GPIO18"       unused   input  active-high 
+	line  19:     "GPIO19"       unused   input  active-high 
+	line  20:     "GPIO20"       unused   input  active-high 
+	line  21:     "GPIO21"       unused   input  active-high 
+	line  22:     "GPIO22"       unused   input  active-high 
+	line  23:     "GPIO23"       unused   input  active-high 
+	line  24:     "GPIO24"       unused   input  active-high 
+	line  25:     "GPIO25"       unused   input  active-high 
+	line  26:     "GPIO26"       unused   input  active-high 
+	line  27:     "GPIO27"       unused   input  active-high 
+	line  28: "RGMII_MDIO"       unused   input  active-high 
+	line  29:  "RGMIO_MDC"       unused   input  active-high 
+	line  30:       "CTS0"       unused   input  active-high 
+	line  31:       "RTS0"       unused   input  active-high 
+	line  32:       "TXD0"       unused   input  active-high 
+	line  33:       "RXD0"       unused   input  active-high 
+	line  34:    "SD1_CLK"       unused   input  active-high 
+	line  35:    "SD1_CMD"       unused   input  active-high 
+	line  36:  "SD1_DATA0"       unused   input  active-high 
+	line  37:  "SD1_DATA1"       unused   input  active-high 
+	line  38:  "SD1_DATA2"       unused   input  active-high 
+	line  39:  "SD1_DATA3"       unused   input  active-high 
+	line  40:  "PWM0_MISO"       unused   input  active-high 
+	line  41:  "PWM1_MOSI"       unused   input  active-high 
+	line  42: "STATUS_LED_G_CLK" "ACT" output active-high [used]
+	line  43: "SPIFLASH_CE_N" unused input active-high 
+	line  44:       "SDA0"       unused   input  active-high 
+	line  45:       "SCL0"       unused   input  active-high 
+	line  46: "RGMII_RXCLK" unused input active-high 
+	line  47: "RGMII_RXCTL" unused input active-high 
+	line  48: "RGMII_RXD0"       unused   input  active-high 
+	line  49: "RGMII_RXD1"       unused   input  active-high 
+	line  50: "RGMII_RXD2"       unused   input  active-high 
+	line  51: "RGMII_RXD3"       unused   input  active-high 
+	line  52: "RGMII_TXCLK" unused input active-high 
+	line  53: "RGMII_TXCTL" unused input active-high 
+	line  54: "RGMII_TXD0"       unused   input  active-high 
+	line  55: "RGMII_TXD1"       unused   input  active-high 
+	line  56: "RGMII_TXD2"       unused   input  active-high 
+	line  57: "RGMII_TXD3"       unused   input  active-high 
+gpiochip1 - 8 lines:
+	line   0:      "BT_ON"   "shutdown"  output  active-high [used]
+	line   1:      "WL_ON"       unused  output  active-high 
+	line   2: "PWR_LED_OFF" "PWR" output active-low [used]
+	line   3: "GLOBAL_RESET" unused output active-high 
+	line   4: "VDD_SD_IO_SEL" "vdd-sd-io" output active-high [used]
+	line   5:   "CAM_GPIO" "cam1_regulator" output active-high [used]
+	line   6:  "SD_PWR_ON" "regulator-sd-vcc" output active-high [used]
+	line   7:    "SD_OC_N"       unused   input  active-high 
+
+pi@raspberrypi:~ $ sudo cat /sys/kernel/debug/gpio
+gpiochip0: GPIOs 512-569, parent: platform/fe200000.gpio, pinctrl-bcm2711:
+ gpio-512 (ID_SDA              )
+ gpio-513 (ID_SCL              )
+ gpio-514 (GPIO2               )
+ gpio-515 (GPIO3               )
+ gpio-516 (GPIO4               |XGPIO-PWR           ) in  lo 
+ gpio-517 (GPIO5               )
+ gpio-518 (GPIO6               )
+ gpio-519 (GPIO7               )
+ gpio-520 (GPIO8               )
+ gpio-521 (GPIO9               )
+ gpio-522 (GPIO10              )
+ gpio-523 (GPIO11              )
+ gpio-524 (GPIO12              )
+ gpio-525 (GPIO13              )
+ gpio-526 (GPIO14              )
+ gpio-527 (GPIO15              )
+ gpio-528 (GPIO16              )
+ gpio-529 (GPIO17              |XGPIO-PWR           ) out hi 
+ gpio-530 (GPIO18              )
+ gpio-531 (GPIO19              )
+ gpio-532 (GPIO20              )
+ gpio-533 (GPIO21              )
+ gpio-534 (GPIO22              )
+ gpio-535 (GPIO23              )
+ gpio-536 (GPIO24              )
+ gpio-537 (GPIO25              )
+ gpio-538 (GPIO26              )
+ gpio-539 (GPIO27              )
+ gpio-540 (RGMII_MDIO          )
+ gpio-541 (RGMIO_MDC           )
+ gpio-542 (CTS0                )
+ gpio-543 (RTS0                )
+ gpio-544 (TXD0                )
+ gpio-545 (RXD0                )
+ gpio-546 (SD1_CLK             )
+ gpio-547 (SD1_CMD             )
+ gpio-548 (SD1_DATA0           )
+ gpio-549 (SD1_DATA1           )
+ gpio-550 (SD1_DATA2           )
+ gpio-551 (SD1_DATA3           )
+ gpio-552 (PWM0_MISO           )
+ gpio-553 (PWM1_MOSI           )
+ gpio-554 (STATUS_LED_G_CLK    |ACT                 ) out lo 
+ gpio-555 (SPIFLASH_CE_N       )
+ gpio-556 (SDA0                )
+ gpio-557 (SCL0                )
+ gpio-558 (RGMII_RXCLK         )
+ gpio-559 (RGMII_RXCTL         )
+ gpio-560 (RGMII_RXD0          )
+ gpio-561 (RGMII_RXD1          )
+ gpio-562 (RGMII_RXD2          )
+ gpio-563 (RGMII_RXD3          )
+ gpio-564 (RGMII_TXCLK         )
+ gpio-565 (RGMII_TXCTL         )
+ gpio-566 (RGMII_TXD0          )
+ gpio-567 (RGMII_TXD1          )
+ gpio-568 (RGMII_TXD2          )
+ gpio-569 (RGMII_TXD3          )
+
+gpiochip1: GPIOs 570-577, parent: platform/soc:firmware:gpio, raspberrypi-exp-gpio, can sleep:
+ gpio-570 (BT_ON               |shutdown            ) out hi 
+ gpio-571 (WL_ON               )
+ gpio-572 (PWR_LED_OFF         |PWR                 ) out lo ACTIVE LOW
+ gpio-573 (GLOBAL_RESET        )
+ gpio-574 (VDD_SD_IO_SEL       |vdd-sd-io           ) out hi 
+ gpio-575 (CAM_GPIO            |cam1_regulator      ) out lo 
+ gpio-576 (SD_PWR_ON           |regulator-sd-vcc    ) out hi 
+ gpio-577 (SD_OC_N             )
+
+pi@raspberrypi:~ $ pinout
+Description        : Raspberry Pi 4B rev 1.1
+Revision           : b03111
+SoC                : BCM2711
+RAM                : 2GB
+Storage            : MicroSD
+USB ports          : 4 (of which 2 USB3)
+Ethernet ports     : 1 (1000Mbps max. speed)
+Wi-fi              : True
+Bluetooth          : True
+Camera ports (CSI) : 1
+Display ports (DSI): 1
+
+,--------------------------------.
+| oooooooooooooooooooo J8   +======
+| 1ooooooooooooooooooo  J14 |   Net
+|  Wi                    12 +======
+|  Fi  Pi Model 4B  V1.1 oo      |
+| |D     ,---. +---+          +====
+| |S     |SoC| |RAM|          |USB3
+| |I     `---' +---+          +====
+| |0                C|           |
+| oo1 J2            S|        +====
+|                   I| |A|    |USB2
+| pwr   |hd|   |hd| 0| |u|    +====
+`-| |---|m0|---|m1|----|x|-------'
+
+J8:
+   3V3  (1) (2)  5V    
+ GPIO2  (3) (4)  5V    
+ GPIO3  (5) (6)  GND   
+ GPIO4  (7) (8)  GPIO14
+   GND  (9) (10) GPIO15
+GPIO17 (11) (12) GPIO18
+GPIO27 (13) (14) GND   
+GPIO22 (15) (16) GPIO23
+   3V3 (17) (18) GPIO24
+GPIO10 (19) (20) GND   
+ GPIO9 (21) (22) GPIO25
+GPIO11 (23) (24) GPIO8 
+   GND (25) (26) GPIO7 
+ GPIO0 (27) (28) GPIO1 
+ GPIO5 (29) (30) GND   
+ GPIO6 (31) (32) GPIO12
+GPIO13 (33) (34) GND   
+GPIO19 (35) (36) GPIO16
+GPIO26 (37) (38) GPIO20
+   GND (39) (40) GPIO21
+
+J2:
+GLOBAL ENABLE (1)
+          GND (2)
+          RUN (3)
+
+J14:
+TR01 TAP (1) (2) TR00 TAP
+TR03 TAP (3) (4) TR02 TAP
+
+geekworm@geekworm-desktop:~$ ldd xgpio_pwr
+	linux-vdso.so.1 (0x0000ffffb338d000)
+	libgpiod.so.2 => /lib/aarch64-linux-gnu/libgpiod.so.2 (0x0000ffffb32f0000)
+	libc.so.6 => /lib/aarch64-linux-gnu/libc.so.6 (0x0000ffffb3140000)
+	/lib/ld-linux-aarch64.so.1 (0x0000ffffb3350000)
